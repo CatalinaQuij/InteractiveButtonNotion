@@ -9,13 +9,16 @@ body {
 
 .image-widget {
     cursor: pointer;
-    max-width: 100%; /* El ancho máximo del contenedor */
-    max-height: 100%; /* La altura máxima del contenedor */
-    overflow: hidden; /* Para ocultar cualquier desbordamiento */
+    width: 100%; /* Puedes ajustar el ancho según necesites */
+    max-width: 100%;
+    aspect-ratio: 297 / 210; /* Proporción de una hoja A4 horizontal */
+    background-color: #191919; /* Fondo transparente */
+    overflow: hidden;
 }
 
 img {
-    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Evita espacios extra alrededor de la imagen */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mantiene las proporciones de la imagen dentro del contenedor */
 }
+
