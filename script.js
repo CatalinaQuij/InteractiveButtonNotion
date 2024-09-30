@@ -1,11 +1,13 @@
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    databaseURL: "TU_DATABASE_URL",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID"
+  apiKey: "AIzaSyDpK7adqhBEKtJ231JJhAQDSZyJ8f2rUaQ",
+  authDomain: "notionbutton.firebaseapp.com",
+  databaseURL: "https://notionbutton-default-rtdb.firebaseio.com",
+  projectId: "notionbutton",
+  storageBucket: "notionbutton.appspot.com",
+  messagingSenderId: "593095627631",
+  appId: "1:593095627631:web:52e0977e28e94af011ce9a",
+  measurementId: "G-7K81PV38KG"
 };
 
 // Inicializa Firebase
