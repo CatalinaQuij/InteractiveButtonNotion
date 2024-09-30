@@ -9,16 +9,14 @@ body {
 
 .image-widget {
     cursor: pointer;
-    width: 100%; /* Puedes ajustar el ancho según necesites */
-    max-width: 100%;
-    aspect-ratio: 297 / 210; /* Proporción de una hoja A4 horizontal */
-    background-color: #191919; /* Fondo transparente */
-    overflow: hidden;
+    width: 736px; /* Ancho fijo de 736 píxeles */
+    height: 503px; /* Altura fija de 503 píxeles */
+    background-color: transparent; /* Fondo transparente */
+    overflow: hidden; /* Ocultar cualquier desbordamiento de la imagen */
 }
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Mantiene las proporciones de la imagen dentro del contenedor */
+    width: 100%; /* La imagen ocupará todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupará toda la altura del contenedor */
+    object-fit: cover; /* La imagen se ajustará para llenar el contenedor */
 }
-
