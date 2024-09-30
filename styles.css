@@ -4,22 +4,18 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #191919; /* Fondo de la página */
+    background-color: #191919; /* Fondo transparente */
 }
 
 .image-widget {
     cursor: pointer;
-    background-color: transparent; /* Fondo transparente del widget */
-    width: 1122px; /* Ancho de la imagen A4 en píxeles */
-    height: 794px; /* Alto de la imagen A4 en píxeles */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 100%; /* El ancho máximo del contenedor */
+    max-height: 100%; /* La altura máxima del contenedor */
+    overflow: hidden; /* Para ocultar cualquier desbordamiento */
 }
 
 img {
-    width: 100%;
-    height: auto;
-    object-fit: cover; /* Ajusta la imagen para que cubra todo el espacio sin deformarse */
-    border: none; /* Sin bordes */
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Evita espacios extra alrededor de la imagen */
 }
