@@ -4,14 +4,22 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #191919;
+    background-color: #191919; /* Fondo de la página */
 }
 
 .image-widget {
     cursor: pointer;
+    background-color: transparent; /* Fondo transparente del widget */
+    width: 1122px; /* Ancho de la imagen A4 en píxeles */
+    height: 794px; /* Alto de la imagen A4 en píxeles */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    object-fit: cover; /* Ajusta la imagen para que cubra todo el espacio sin deformarse */
+    border: none; /* Sin bordes */
 }
