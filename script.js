@@ -1,13 +1,10 @@
-let isImageOne = true;
+let imageIndex = 0; // Índice de la imagen actual
+const images = ['imagen1.jpg', 'imagen2.jpg', 'imagen3.jpg']; // Lista de imágenes
 
 function changeImage() {
     const widgetImage = document.getElementById('widgetImage');
     
-    if (isImageOne) {
-        widgetImage.src = 'imagen2.jpg'; // Cambia a la segunda imagen
-    } else {
-        widgetImage.src = 'imagen1.jpg'; // Cambia de vuelta a la primera imagen
-    }
-    
-    isImageOne = !isImageOne; // Cambia el estado
+    // Cambia la imagen al siguiente índice en la lista
+    imageIndex = (imageIndex + 1) % images.length;
+    widgetImage.src = images[imageIndex];
 }
