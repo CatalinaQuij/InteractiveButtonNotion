@@ -1,33 +1,25 @@
-import { initializeApp } from "firebase/app";
-// Configuración de Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDpK7adqhBEKtJ231JJhAQDSZyJ8f2rUaQ",
-  authDomain: "notionbutton.firebaseapp.com",
-  databaseURL: "https://notionbutton-default-rtdb.firebaseio.com",
-  projectId: "notionbutton",
-  storageBucket: "notionbutton.appspot.com",
-  messagingSenderId: "593095627631",
-  appId: "1:593095627631:web:52e0977e28e94af011ce9a",
-  measurementId: "G-7K81PV38KG"
-};
-
-// Inicializar Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-const imageRef = db.ref('NOTIONBUTTON/currentImage');
-
-let imageIndex = 0;
+let imageIndex = 0; // Índice de la imagen actual
 const images = ['imagen1.jpg', 'imagen2.jpg', 'imagen3.jpg']; // Lista de imágenes
 
-// Función para cambiar la imagen en Firebase
 function changeImage() {
+    const widgetImage = document.getElementById('widgetImage');
+
+    // Cambia la imagen al siguiente índice en la lista
     imageIndex = (imageIndex + 1) % images.length;
-    imageRef.set(imageIndex); // Actualizar la imagen en la base de datos
+    widgetImage.src = images[imageIndex];
+    
+    // Actualiza la base de datos Firebase con el nuevo índice de la imagen
+    firebase.database().ref('NOTIONBUTTON').set({
+        imageIndex: imageIndex
+    });
 }
 
-// Escuchar cambios en la base de datos y actualizar la imagen para todos los usuarios
-imageRef.on('value', (snapshot) => {
-    const index = snapshot.val();
-    const widgetImage = document.getElementById('widgetImage');
-    widgetImage.src = images[index]; // Cambiar la imagen localmente cuando se actualice en Firebase
+// Escucha los cambios en la base de datos y actualiza la imagen en consecuencia
+firebase.database().ref('NOTIONBUTTON').on('value', (snapshot) => {
+    const data = snapshot.val();
+    if (data && data.imageIndex !== undefined) {
+        const widgetImage = document.getElementById('widgetImage');
+        imageIndex = data.imageIndex;
+        widgetImage.src = images[imageIndex];
+    }
 });
