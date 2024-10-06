@@ -1,4 +1,4 @@
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDpK7adqhBEKtJ231JJhAQDSZyJ8f2rUaQ",
   authDomain: "notionbutton.firebaseapp.com",
@@ -10,24 +10,23 @@ const firebaseConfig = {
   measurementId: "G-7K81PV38KG"
 };
 
-// Inicializa Firebase
-firebase.initializeApp(firebaseConfig);
+// Inicializar Firebase
+const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+const imageRef = db.ref('NOTIONBUTTON/currentImage');
 
-let imageIndex = 0; // Índice de la imagen actual
+let imageIndex = 0;
 const images = ['imagen1.jpg', 'imagen2.jpg', 'imagen3.jpg']; // Lista de imágenes
 
-// Lee el índice de imagen desde la base de datos
-db.ref('imageIndex').on('value', (snapshot) => {
-    imageIndex = snapshot.val() || 0;
-    const widgetImage = document.getElementById('widgetImage');
-    widgetImage.src = images[imageIndex];
-});
-
+// Función para cambiar la imagen en Firebase
 function changeImage() {
-    // Cambia la imagen al siguiente índice en la lista
     imageIndex = (imageIndex + 1) % images.length;
-
-    // Actualiza el índice en la base de datos
-    db.ref('imageIndex').set(imageIndex);
+    imageRef.set(imageIndex); // Actualizar la imagen en la base de datos
 }
+
+// Escuchar cambios en la base de datos y actualizar la imagen para todos los usuarios
+imageRef.on('value', (snapshot) => {
+    const index = snapshot.val();
+    const widgetImage = document.getElementById('widgetImage');
+    widgetImage.src = images[index]; // Cambiar la imagen localmente cuando se actualice en Firebase
+});
