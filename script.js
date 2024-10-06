@@ -1,22 +1,24 @@
-let imageIndex = 0; // Índice de la imagen actual
-const images = ['imagen1.jpg', 'imagen2.jpg', 'imagen3.jpg']; // Lista de imágenes
+let isOccupied = true;
 
-function changeImage() {
-    // Cambia la imagen al siguiente índice en la lista
-    imageIndex = (imageIndex + 1) % images.length;
+function toggleStatus() {
+    const statusButton = document.getElementById('statusButton');
+    isOccupied = !isOccupied;
+    statusButton.textContent = isOccupied ? 'Ocupado' : 'Disponible';
+    statusButton.classList.toggle('available', !isOccupied);
 
-    // Actualiza la base de datos Firebase con el nuevo índice de la imagen
-    firebase.database().ref('NOTIONBUTTON').set({
-        imageIndex: imageIndex
+    // Actualiza la base de datos Firebase con el nuevo estado
+    firebase.database().ref('NOTIONSTATUS').set({
+        status: isOccupied ? 'Ocupado' : 'Disponible'
     });
 }
 
-// Escucha los cambios en la base de datos y actualiza la imagen en consecuencia
-firebase.database().ref('NOTIONBUTTON').on('value', (snapshot) => {
+// Escucha los cambios en la base de datos y actualiza el botón en consecuencia
+firebase.database().ref('NOTIONSTATUS').on('value', (snapshot) => {
     const data = snapshot.val();
-    if (data && data.imageIndex !== undefined) {
-        const widgetImage = document.getElementById('widgetImage');
-        imageIndex = data.imageIndex;
-        widgetImage.src = images[imageIndex];
+    if (data && data.status !== undefined) {
+        const statusButton = document.getElementById('statusButton');
+        isOccupied = data.status === 'Ocupado';
+        statusButton.textContent = data.status;
+        statusButton.classList.toggle('available', !isOccupied);
     }
 });
