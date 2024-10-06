@@ -4,25 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Widget de Cambio de Imagen</title>
+    <title>Botón de Estado</title>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js"></script>
 </head>
 <body>
-    <div class="image-widget" id="imageWidget" onclick="changeImage()">
-        <img id="widgetImage" src="imagen1.jpg" alt="Imagen" />
-    </div>
+    <div class="status-button" id="statusButton" onclick="toggleStatus()">Ocupado</div>
     <script>
         // Configura tu aplicación de Firebase
         var firebaseConfig = {
-            apiKey: "AIzaSyDpK7adqhBEKtJ231JJhAQDSZyJ8f2rUaQ",
-            authDomain: "notionbutton.firebaseapp.com",
-            databaseURL: "https://notionbutton-default-rtdb.firebaseio.com",
-            projectId: "notionbutton",
-            storageBucket: "notionbutton.appspot.com",
-            messagingSenderId: "593095627631",
-            appId: "1:593095627631:web:52e0977e28e94af011ce9a",
-            measurementId: "G-7K81PV38KG"
+              apiKey: "AIzaSyDpK7adqhBEKtJ231JJhAQDSZyJ8f2rUaQ",
+              authDomain: "notionbutton.firebaseapp.com",
+              databaseURL: "https://notionbutton-default-rtdb.firebaseio.com",
+              projectId: "notionbutton",
+              storageBucket: "notionbutton.appspot.com",
+              messagingSenderId: "593095627631",
+              appId: "1:593095627631:web:52e0977e28e94af011ce9a",
+              measurementId: "G-7K81PV38KG"
         };
         // Inicializa Firebase
         firebase.initializeApp(firebaseConfig);
@@ -31,3 +29,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
